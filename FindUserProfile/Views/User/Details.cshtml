@@ -1,0 +1,61 @@
+﻿@model FindUserProfile.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>User Details</h1>
+<hr />
+<div class="col-md-12 row">   
+    <div class="col-md-4">
+        <dl class="row">
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.EmailId)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.EmailId)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Experience)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Experience)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.CurrentCompany)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.CurrentCompany)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Qualification)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Qualification)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.PreferredLocation)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.PreferredLocation)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Image" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <img id="PreviewPhoto" src="~/images/@Model.ImageName" alt="Logo Image"
+                 width="125" height="125" />
+        </div>
+     </div>
+    </div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }, new { @class = "btn btn-warning" }) |
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>

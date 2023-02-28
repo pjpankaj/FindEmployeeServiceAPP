@@ -1,0 +1,81 @@
+﻿@model FindUserProfile.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Create";
+     
+}
+
+<h1>Create New User</h1>
+<hr />
+@using (Html.BeginForm("Create","User",FormMethod.Post,new { enctype = "multipart/form-data" }))
+{
+<div class="form-row col-md-12">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group col-md-4">
+        <table>
+            <tr>
+                <td><label asp-for="Name" class="control-label"></label></td>
+                <td>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="EmailId" class="control-label"></label></td>
+                <td>
+                    <input asp-for="EmailId" class="form-control" />
+                    <span asp-validation-for="EmailId" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="Experience" class="control-label"></label>
+                </td>
+                <td>
+                    <input asp-for="Experience" class="form-control" />
+                    <span asp-validation-for="Experience" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="CurrentCompany" class="control-label"></label></td>
+                <td>
+                    <input asp-for="CurrentCompany" class="form-control" />
+                    <span asp-validation-for="CurrentCompany" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Qualification" class="control-label"></label></td>
+                <td>
+                    @Html.DropDownListFor(model=>Model.QualificationId,new SelectList(ViewBag.QualDetails,"Id","Qualif"),"Select",htmlAttributes:new {@class="form-control" })
+                    <span asp-validation-for="Qualification" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="PreferredLocation" class="control-label"></label></td>
+                <td>
+                    <input asp-for="PreferredLocation" class="form-control" />
+                    <span asp-validation-for="PreferredLocation" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group col-md-4">
+            <label asp-for="Image" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <img id="PreviewPhoto" src="~/images/@Model.ImageName" alt="Logo Image"
+                     width="125" height="125" />               
+                @Html.TextBox("Image", null, new { type = "file", accept = "image/*" })
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>            
+    </div>
+    <div class="form-group col-md-6">
+        <input type="submit" value="Create" class="btn btn-primary" />|
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+    
+</div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
